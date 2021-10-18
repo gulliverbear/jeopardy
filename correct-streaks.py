@@ -65,5 +65,15 @@ for csv_file in glob.glob(os.path.join(csv_dir, "*.csv")):
 
 df = pd.DataFrame(rows)
 
-### TO DO ###
 # make a plot of the histogram of longest streaks
+fontsize = 16
+fig, ax = plt.subplots(figsize=(10,10))
+ax.hist(df["max_streak"], bins=range(0,20,1), edgecolor="k", alpha=0.5)
+ax.set_ylim((0,4000))
+ax.set_xlabel("# of questions correct in a row", fontsize=fontsize, style="italic")
+ax.set_ylabel("# of times that streak length was the max in a round")
+ax.annotate("Ken Jennings\n16 correct in a row\nGame #4639",
+            xy=(16,1), xytext=(30, 50), color='r', fontsize=fontsize,
+            textcoords='offset points', ha='right', va='bottom',
+            bbox=dict(boxstyle='round,pad=0.5', fc='white', alpha=0.5),
+            arrowprops=dict(arrowstyle = '->', connectionstyle='arc3,rad=0'))
