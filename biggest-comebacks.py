@@ -10,8 +10,12 @@ def get_winners(df):
     return list of winning player numbers
     (there can be multiple "winners" if there is a tie)
     '''
-    pass
-    # TO DO
+    final_scores = []
+    for i in (1,2,3):
+        final_scores.append(df[df["round"]=="FJ"][f"p{i}_running_total"].values[0])
+    if max(final_scores) == 0:
+        return []
+    return [pnum+1 for pnum, score in enumerate(final_scores) if score == max(final_scores)]
 
 def get_max_comeback(df, winner_num, d, player_ids, pid_to_name, game_number):
     '''
