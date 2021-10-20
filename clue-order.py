@@ -41,8 +41,12 @@ def get_clue_orders(df, jround):
     ie [[1,2,3,4,5],[5,4,3,2,1],...]
     would mean 1st column went in order, and 2nd column went in reverse order
     '''
-    # TO DO
-    pass
+    clue_orders = []
+    for col in range(1,7):
+        tdf = df[(df["column"]==col) & (df["round"]==jround)]
+        clue_order = list(tdf.sort_values(by="clue_order")["row"].values)
+        clue_orders.append(clue_order)
+    return clue_orders
 
 def get_first_clue_rank(game_to_orders):
     '''
